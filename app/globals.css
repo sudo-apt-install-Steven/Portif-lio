@@ -20,22 +20,42 @@ body {
   color: var(--foreground);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Escondida completamente */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 0px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+  background: transparent;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #ff8000;
+/* Firefox - esconder scrollbar */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Garantir que scroll funcione */
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .text-shimmer {
@@ -57,4 +77,118 @@ body {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Projects Grid - Media Queries para 10+ dispositivos */
+/* Layout dinâmico que se adapta automaticamente ao número de projetos */
+
+.projects-grid {
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+/* Dispositivos muito pequenos (240px - 319px) - Celulares antigos */
+@media (min-width: 240px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Smartphones pequenos (320px - 374px) - iPhone SE, Galaxy S8 */
+@media (min-width: 320px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Smartphones médios (375px - 413px) - iPhone 12/13/14, Pixel */
+@media (min-width: 375px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Smartphones grandes (414px - 599px) - iPhone Pro Max, Galaxy Note */
+@media (min-width: 414px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablets pequenos (600px - 767px) - iPad Mini, Kindle Fire */
+@media (min-width: 600px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets (768px - 1023px) - iPad, Surface */
+@media (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets grandes / Laptops pequenos (1024px - 1279px) - iPad Pro, Laptops 13" */
+@media (min-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Laptops (1280px - 1439px) - Laptops 14"/15" */
+@media (min-width: 1280px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktops (1440px - 1919px) - Monitores 1080p, iMac */
+@media (min-width: 1440px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktops grandes (1920px+) - Monitores 4K, Ultrawide */
+@media (min-width: 1920px) {
+  .projects-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktops muito grandes (2560px+) - Monitores 2K/4K grandes */
+@media (min-width: 2560px) {
+  .projects-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktops muito grandes (2560px+) - Monitores 2K/4K grandes */
+@media (min-width: 2560px) {
+  .projects-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Utilitários para line-clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

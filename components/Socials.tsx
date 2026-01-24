@@ -1,12 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaTiktok, FaLinkedinIn, FaInstagram } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
 
 
 const socials = [
-  { name: "LinkedIn", icon: FaLinkedinIn, link: "#" },
-  { name: "Instagram", icon: FaInstagram, link: "#" },
-  { name: "TikTok", icon: FaTiktok, link: "#" },
+  { name: "GitHub", icon: FaGithub, link: "https://github.com/sudo-apt-install-Steven" },
 ];
 
 export default function Socials() {

@@ -41,7 +41,7 @@ export default function Hero() {
             transition={{ delay: 0.8 }}
             className="mt-6 text-xl text-gray-400 font-light tracking-widest uppercase z-20"
         >
-            Natan Cardoso
+            Steven Tayllon
         </motion.p>
       </div>
 

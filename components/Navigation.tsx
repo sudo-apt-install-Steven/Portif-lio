@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 
@@ -16,6 +16,7 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState("hero");
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const lastScrollTime = useRef<number>(0);
 
   // Handle Resize
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function Navigation() {
   }, []);
 
   // Custom Smooth Scroll Helper
-  const smoothScrollTo = (targetId: string) => {
+  const smoothScrollTo = useCallback((targetId: string) => {
     const target = document.getElementById(targetId);
     if (!target) return;
 
@@ -57,22 +58,70 @@ export default function Navigation() {
 
     setIsScrolling(true);
     requestAnimationFrame(animation);
-  };
+  }, []);
 
-  // One-Scroll Logic (Wheel Hijack)
+  // Scroll Logic - Scroll livre com throttle apenas para snap entre seções
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      // Allow native scroll on mobile/touch devices or if currently animating
-      if (window.innerWidth < 768 || isScrolling) return;
+      // Allow native scroll on mobile/touch devices - SEMPRE
+      if (window.innerWidth < 768) return;
 
-      e.preventDefault();
+      // Se já está scrollando programaticamente, não interceptar
+      if (isScrolling) {
+        e.preventDefault();
+        return;
+      }
 
-      const currentIndex = sections.findIndex((s) => s.id === activeSection);
-      const direction = e.deltaY > 0 ? 1 : -1;
-      const nextIndex = currentIndex + direction;
+      // Verificar se está na seção Projects - SEMPRE permitir scroll livre
+      const projectsSection = document.getElementById('projects');
+      if (projectsSection) {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const projectsTop = projectsSection.offsetTop;
+        const projectsHeight = projectsSection.offsetHeight;
+        const viewportHeight = window.innerHeight;
+        const isInProjects = scrollY >= projectsTop - 100 && 
+                            scrollY < projectsTop + projectsHeight - viewportHeight + 100;
+        
+        // Se estiver dentro da seção Projects, SEMPRE permitir scroll livre
+        if (isInProjects) {
+          return; // Não interceptar, deixar scroll nativo funcionar
+        }
+      }
 
-      if (nextIndex >= 0 && nextIndex < sections.length) {
-        smoothScrollTo(sections[nextIndex].id);
+      // Para outras seções, verificar se está nas bordas antes de aplicar snap
+      const currentSection = document.getElementById(activeSection);
+      if (currentSection) {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const sectionTop = currentSection.offsetTop;
+        const sectionBottom = sectionTop + currentSection.offsetHeight;
+        const viewportHeight = window.innerHeight;
+        
+        const atTop = scrollY <= sectionTop + 150;
+        const atBottom = scrollY + viewportHeight >= sectionBottom - 150;
+        
+        // Throttle: permitir apenas 1 snap scroll a cada 1.5 segundos
+        const now = Date.now();
+        const timeSinceLastScroll = now - lastScrollTime.current;
+        
+        // Só interceptar se estiver nas bordas E throttle permitir
+        if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+          if (timeSinceLastScroll >= 1500) {
+            e.preventDefault();
+            
+            const currentIndex = sections.findIndex((s) => s.id === activeSection);
+            const direction = e.deltaY > 0 ? 1 : -1;
+            const nextIndex = currentIndex + direction;
+
+            if (nextIndex >= 0 && nextIndex < sections.length) {
+              lastScrollTime.current = now;
+              smoothScrollTo(sections[nextIndex].id);
+            }
+          } else {
+            // Throttle ativo - permitir scroll livre mas não snap
+            return;
+          }
+        }
+        // Se não estiver nas bordas, permitir scroll livre
       }
     };
 
@@ -82,15 +131,14 @@ export default function Navigation() {
     return () => {
       window.removeEventListener("wheel", handleWheel);
     };
-  }, [activeSection, isScrolling]);
+  }, [activeSection, isScrolling, smoothScrollTo]);
 
-  // Intersection Observer (Kept for touch/keyboard sync)
+  // Intersection Observer - Corrigido com dependências estáveis
   useEffect(() => {
+    if (isScrolling) return; // Não atualizar durante scroll programático
+
     const observer = new IntersectionObserver(
       (entries) => {
-        // Only update if not currently driven by wheel script to avoid conflicts 
-        // OR let it sync naturally. Let's let it sync but careful with race conditions.
-        // Actually, for "one scroll", observer is good to confirm arrival.
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
             setActiveSection(entry.target.id);
@@ -109,15 +157,16 @@ export default function Navigation() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isScrolling]); // Dependência estável
 
-  // Keyboard Navigation
+  // Keyboard Navigation - Com throttle
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if(isScrolling) return; // Prevent spamming
+      const now = Date.now();
+      if(isScrolling || (now - lastScrollTime.current) < 1500) return; // Throttle
 
       const currentIndex = sections.findIndex((s) => s.id === activeSection);
-      let targetId = null;
+      let targetId: string | null = null;
 
       if (["ArrowDown", "PageDown"].includes(e.key)) {
         e.preventDefault();
@@ -134,21 +183,24 @@ export default function Navigation() {
       }
 
       if (targetId) {
+        lastScrollTime.current = now;
         setIsScrolling(true);
-        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
-        setTimeout(() => setIsScrolling(false), 1000);
+        smoothScrollTo(targetId);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeSection, isScrolling]);
+  }, [activeSection, isScrolling, smoothScrollTo]);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
+    const now = Date.now();
+    if ((now - lastScrollTime.current) < 1500) return; // Throttle
+    
+    lastScrollTime.current = now;
     setIsScrolling(true);
-    document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
-    setTimeout(() => setIsScrolling(false), 1000);
-  };
+    smoothScrollTo("hero");
+  }, [smoothScrollTo]);
 
   return (
     <>

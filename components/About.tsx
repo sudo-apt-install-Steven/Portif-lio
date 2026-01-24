@@ -8,10 +8,10 @@ import { SiNextdotjs, SiTailwindcss, SiJavascript, SiTypescript } from "react-ic
 
 export default function About() {
   const highlights = [
-    "5+ Anos de Experiência Fullstack",
-    "Especialista em Next.js & React",
-    "UI/UX Design Acessível",
-    "Performance Optimization",
+    "3 Anos de Experiência/Estudo",
+    "Técnico em Informática",
+    "Desenvolvimento Mobile",
+    "Full Stack Developer",
   ];
 
   const techStack = [
@@ -19,9 +19,9 @@ export default function About() {
     { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
     { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
     { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
-    { name: "Tailwind", icon: SiTailwindcss, color: "#38B2AC" },
-    { name: "CSS", icon: FaCss3Alt, color: "#1572B6" },
-    { name: "HTML", icon: FaHtml5, color: "#E34F26" },
+    { name: "Node.js", icon: SiJavascript, color: "#339933" },
+    { name: "Python", icon: SiJavascript, color: "#3776AB" },
+    { name: "MySQL", icon: SiJavascript, color: "#4479A1" },
   ];
 
   return (
@@ -38,11 +38,16 @@ export default function About() {
             <div className="absolute inset-0 bg-[#ff8000] rotate-3 rounded-2xl opacity-20 blur-xl group-hover:rotate-6 transition-transform duration-500" />
             <div className="relative rounded-2xl overflow-hidden border-2 border-[#ff8000]/30 glow-border">
                 <Image 
-                    src="/avatar.png" 
-                    alt="Profile" 
+                    src="/steven-avatar.jpg" 
+                    alt="Steven Tayllon - Desenvolvedor Full Stack" 
                     width={500} 
                     height={500} 
                     className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500 aspect-square"
+                    onError={(e) => {
+                        // Fallback para avatar padrão se a imagem não existir
+                        const target = e.target as HTMLImageElement;
+                        target.src = '/avatar.png';
+                    }}
                 />
             </div>
         </motion.div>
@@ -64,12 +69,13 @@ export default function About() {
                  viewport={{ once: true }}
                  transition={{ duration: 0.8, delay: 0.2 }}
             >
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display">Natan <span className="text-[#ff8000]">Cardoso</span></h2>
-                <h3 className="text-xl md:text-2xl text-gray-300 font-medium mb-6">Desenvolvedor Front-end</h3>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display">Steven <span className="text-[#ff8000]">Tayllon</span></h2>
+                <h3 className="text-xl md:text-2xl text-gray-300 font-medium mb-6">Dev Full Stack (Estudante Ens. Méd. Integrado)</h3>
                 <p className="text-gray-400 leading-relaxed mb-8">
-                    Transformo ideias complexas em experiências digitais fluidas e impactantes. 
-                    Com um olhar apurado para design e uma paixão por código limpo, 
-                    crio soluções que não apenas funcionam, mas encantam.
+                    Desenvolvedor Full Stack apaixonado por tecnologia, com foco em criar soluções inovadoras 
+                    e eficientes. Técnico em Informática com experiência em desenvolvimento web e mobile, 
+                    sempre buscando aprender e aplicar as melhores práticas. Interessado em custom ROMs, 
+                    root e explorar as possibilidades que a tecnologia oferece.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

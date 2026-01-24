@@ -72,13 +72,13 @@ export default function Footer() {
                             <div className="p-3 rounded-full bg-[#1a1a1a] text-[#ff8000] group-hover:scale-110 transition-transform">
                                 <Mail size={20} />
                             </div>
-                            <span className="font-light">contato@portfolio.com</span>
+                            <span className="font-light">melos.s@estudante.ifro.edu.br</span>
                         </div>
                         <div className="flex items-center gap-4 text-gray-300 group">
                             <div className="p-3 rounded-full bg-[#1a1a1a] text-[#ff8000] group-hover:scale-110 transition-transform">
                                 <MapPin size={20} />
                             </div>
-                            <span className="font-light">São Paulo, Brasil</span>
+                            <span className="font-light">Vilhena, RO, Brasil</span>
                         </div>
                      </div>
                 </div>
@@ -87,7 +87,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">© 2026 Portfólio. Todos os direitos reservados.</p>
+            <p className="text-gray-500 text-sm">© 2026 Steven Tayllon. Todos os direitos reservados.</p>
             
             <button 
                 onClick={scrollToTop}

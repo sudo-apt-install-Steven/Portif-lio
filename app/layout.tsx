@@ -19,8 +19,8 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Portfólio Profissional",
-  description: "Portfólio moderno e interativo",
+  title: "Steven Tayllon - Portfólio",
+  description: "Portfólio de Steven Tayllon - Desenvolvedor Full Stack",
 };
 
 export default function RootLayout({
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className="scroll-smooth snap-y snap-mandatory h-screen overflow-y-scroll"
+      className="scroll-smooth"
     >
       <body
         className={`${montserrat.variable} ${inter.variable} ${orbitron.variable} font-sans antialiased bg-[#0a0a0a] text-white selection:bg-[#ff8000] selection:text-white`}
