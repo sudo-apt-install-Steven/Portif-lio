@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfólio - Steven Tayllon
 
-## Getting Started
+Portfólio profissional desenvolvido com [Next.js](https://nextjs.org), apresentando meus projetos de desenvolvimento Full Stack.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+- **Next.js 16** - Framework React para produção
+- **React 19** - Biblioteca JavaScript para interfaces
+- **TypeScript** - Superset JavaScript com tipagem estática
+- **Tailwind CSS** - Framework CSS utilitário
+- **Framer Motion** - Biblioteca de animações
+- **Lucide React** - Ícones modernos
+
+## 📦 Instalação
+
+Primeiro, instale as dependências:
+
+```bash
+npm install
+# ou
+yarn install
+# ou
+pnpm install
+```
+
+## 🏃 Executando o Projeto
+
+Execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
+# ou
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Você pode começar a editar a página modificando `app/page.tsx`. A página atualiza automaticamente conforme você edita o arquivo.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Scripts Disponíveis
 
-## Learn More
+- `npm run dev` - Inicia o servidor de desenvolvimento
+- `npm run build` - Cria uma build de produção
+- `npm run start` - Inicia o servidor de produção
+- `npm run lint` - Executa o linter ESLint
 
-To learn more about Next.js, take a look at the following resources:
+## 📚 Aprenda Mais
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para aprender mais sobre Next.js, consulte os seguintes recursos:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Documentação do Next.js](https://nextjs.org/docs) - Aprenda sobre recursos e API do Next.js
+- [Tutorial do Next.js](https://nextjs.org/learn) - Um tutorial interativo do Next.js
 
-## Deploy on Vercel
+## 🚢 Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A forma mais fácil de fazer deploy desta aplicação Next.js é usar a [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) dos criadores do Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Consulte a [documentação de deploy do Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para mais detalhes.
+
+## 👤 Autor
+
+**Steven Tayllon Teixeira Jerônimo de Melos**
+
+- Desenvolvedor Full Stack
+- Estudante de Ensino Médio Integrado
+- Técnico em Informática
+- GitHub: [@sudo-apt-install-Steven](https://github.com/sudo-apt-install-Steven)
+- Email: melos.s@estudante.ifro.edu.br
+
+## 📄 Licença
+
+Este projeto é privado e pessoal.
