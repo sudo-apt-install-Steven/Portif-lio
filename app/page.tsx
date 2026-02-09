@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Socials from "@/components/Socials";
 import Projects from "@/components/Projects";
+import Certificates from "@/components/Certificates";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -56,6 +57,7 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
+        <Certificates />
         <Socials />
         <Footer />
       </div>

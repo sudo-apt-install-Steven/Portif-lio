@@ -8,6 +8,7 @@ const sections = [
   { id: "hero", label: "Início" },
   { id: "about", label: "Sobre Mim" },
   { id: "projects", label: "Projetos" },
+  { id: "certificates", label: "Certificados" },
   { id: "socials", label: "Redes Sociais" },
   { id: "footer", label: "Contato" },
 ];
