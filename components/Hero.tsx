@@ -24,7 +24,7 @@ export default function Hero() {
             textShadow: "0 0 40px rgba(255, 128, 0, 0.4)",
           }}
         >
-          PORTFÓLIO
+          STEVEN TAYLLON
         </motion.h1>
 
         {/* Glow behind text */}
@@ -41,7 +41,7 @@ export default function Hero() {
             transition={{ delay: 0.8 }}
             className="mt-6 text-xl text-gray-400 font-light tracking-widest uppercase z-20"
         >
-            Steven Tayllon
+            Desenvolvedor Full Stack
         </motion.p>
       </div>
 

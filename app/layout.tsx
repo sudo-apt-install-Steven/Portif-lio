@@ -19,8 +19,8 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "Steven Tayllon - Portfólio",
-  description: "Portfólio de Steven Tayllon - Desenvolvedor Full Stack",
+  title: "Steven Tayllon - Desenvolvedor Full Stack",
+  description: "Site pessoal de Steven Tayllon - Desenvolvedor Full Stack",
 };
 
 export default function RootLayout({
