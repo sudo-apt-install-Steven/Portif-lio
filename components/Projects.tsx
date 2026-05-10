@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, FolderGit2 } from "lucide-react";
 
 const projects = [
   { 
@@ -79,63 +78,67 @@ const projects = [
 ];
 
 export default function Projects() {
-    const ref = useRef(null);
-
   return (
-    <section id="projects" ref={ref} className="w-full bg-[#0d0d0d] py-8 px-3 sm:py-12 sm:px-4 md:py-16 md:px-6 lg:py-20 lg:px-8 xl:py-24 xl:px-12 relative overflow-hidden flex flex-col justify-start snap-start">
-        <div className="max-w-[1920px] mx-auto w-full">
-            <motion.h2 
-                initial={{ opacity: 0, y: 50 }}
+    <section id="projects" className="section-wrap relative w-full overflow-hidden bg-[#0d0d0d]/95 px-5 py-24 md:px-10 lg:px-20">
+        <div className="aurora-orb left-[-12rem] top-1/3" aria-hidden="true" />
+        <div className="mx-auto w-full max-w-7xl">
+            <motion.div
+                initial={{ opacity: 0, y: 34 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500 mb-8 sm:mb-12 md:mb-16 lg:mb-20 font-display uppercase text-center px-2"
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="mx-auto mb-14 max-w-3xl text-center"
             >
-                Meus <span className="text-[#ff8000]">Projetos</span>
-            </motion.h2>
+                <p className="mb-3 text-sm font-black uppercase tracking-[0.35em] text-[#ff8000]">Projetos</p>
+                <h2 className="font-display text-3xl font-black text-white sm:text-5xl lg:text-6xl">
+                    Soluções <span className="text-[#ff8000]">web</span> e APIs
+                </h2>
+                <p className="mt-5 text-base leading-8 text-gray-400">
+                    Uma seleção de trabalhos e repositórios que mostram evolução em frontend, backend, banco de dados e integração de sistemas.
+                </p>
+            </motion.div>
 
-            <div className="grid gap-4 sm:gap-6 md:gap-8 pb-8 sm:pb-12 md:pb-16 lg:pb-20 projects-grid">
+            <div className="projects-grid gap-5 md:gap-6">
                 {projects.map((project, i) => (
                     <motion.a
                         key={i}
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative min-h-[280px] sm:min-h-[320px] md:min-h-[360px] lg:min-h-[400px] xl:min-h-[420px] 2xl:min-h-[450px] bg-[#1f1f1f] rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden cursor-pointer border border-white/5 flex flex-col"
+                        className="liquid-card group relative min-h-[310px] rounded-[1.6rem] cursor-pointer border border-white/10 flex flex-col"
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: Math.min(i * 0.1, 0.8) }}
                         whileHover={{ y: -5, scale: 1.02 }}
                     >
-                        {/* Background gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-[#1a1a1a] group-hover:scale-110 transition-transform duration-700" />
-                        
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(255,128,0,0.18),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] transition-transform duration-700 group-hover:scale-105" />
+                        <div className="absolute right-5 top-5 text-white/10 transition group-hover:text-[#ff8000]/30"><FolderGit2 size={54} /></div>
                         
                         {/* Content */}
-                        <div className="relative z-10 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col flex-grow">
-                            <div className="mb-3 sm:mb-4 flex items-center gap-1.5 sm:gap-2 flex-wrap">
-                                <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1 bg-[#ff8000]/20 text-[#ff8000] text-[10px] sm:text-xs font-bold rounded-full inline-block backdrop-blur-md border border-[#ff8000]/20 uppercase tracking-wider">
+                        <div className="relative z-10 flex flex-grow flex-col p-6 md:p-7">
+                            <div className="mb-5 flex flex-wrap items-center gap-2">
+                                <span className="rounded-full border border-[#ff8000]/25 bg-[#ff8000]/15 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-[#ffb36b] backdrop-blur-md">
                                     {project.category}
                                 </span>
                                 {project.isPrivate && (
-                                    <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 md:px-3 md:py-1 bg-purple-500/20 text-purple-400 text-[10px] sm:text-xs font-bold rounded-full inline-block backdrop-blur-md border border-purple-500/20 uppercase tracking-wider">
+                                    <span className="rounded-full border border-purple-400/25 bg-purple-500/15 px-3 py-1 text-[11px] font-black uppercase tracking-wider text-purple-300 backdrop-blur-md">
                                         Privado
                                     </span>
                                 )}
                             </div>
                             
-                            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 sm:mb-3 md:mb-4 line-clamp-2">{project.title}</h3>
+                            <h3 className="mb-3 line-clamp-2 text-2xl font-black text-white">{project.title}</h3>
                             
-                            <p className="text-gray-400 text-xs sm:text-sm mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed line-clamp-3 sm:line-clamp-4 md:line-clamp-none">
+                            <p className="mb-6 line-clamp-4 flex-grow text-sm leading-7 text-gray-400">
                                 {project.description}
                             </p>
                             
                             {/* Technologies */}
-                            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-5 md:mb-6">
+                            <div className="mb-6 flex flex-wrap gap-2">
                                 {project.technologies.map((tech, idx) => (
                                     <span 
                                         key={idx}
-                                        className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-[#2a2a2a] text-gray-300 text-[10px] sm:text-xs rounded border border-white/5"
+                                        className="rounded-full border border-white/10 bg-white/[0.06] px-2.5 py-1 text-xs font-semibold text-gray-300"
                                     >
                                         {tech}
                                     </span>
@@ -143,14 +146,13 @@ export default function Projects() {
                             </div>
                             
                             {/* Link button */}
-                            <div className="flex items-center gap-1.5 sm:gap-2 text-[#ff8000] font-medium text-xs sm:text-sm group-hover:translate-x-2 transition-transform duration-300">
+                            <div className="flex items-center gap-2 text-sm font-bold text-[#ff8000] transition-transform duration-300 group-hover:translate-x-2">
                                 <span>Ver no GitHub</span>
-                                <ExternalLink size={14} className="sm:w-4 sm:h-4" />
+                                <ExternalLink size={16} />
                             </div>
                         </div>
                         
-                        {/* Orange border glow on hover */}
-                        <div className="absolute inset-0 border-2 border-[#ff8000] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+                        <div className="pointer-events-none absolute inset-0 rounded-[1.6rem] border border-[#ff8000]/0 transition duration-300 group-hover:border-[#ff8000]/70" />
                     </motion.a>
                 ))}
             </div>

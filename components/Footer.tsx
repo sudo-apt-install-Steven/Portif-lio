@@ -1,79 +1,75 @@
 "use client";
-import { motion } from "framer-motion";
-import { ArrowUp, Mail, MapPin, ExternalLink } from "lucide-react";
+
+import { ArrowUp, ExternalLink, Mail, MapPin } from "lucide-react";
+
+const footerLinks = [
+  { label: "Início", href: "#hero" },
+  { label: "Sobre", href: "#about" },
+  { label: "Projetos", href: "#projects" },
+  { label: "Certificados", href: "#certificates" },
+  { label: "Contato", href: "#socials" },
+];
 
 export default function Footer() {
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
   return (
-    <footer id="footer" className="h-screen flex flex-col justify-center w-full bg-gradient-to-b from-[#0a0a0a] to-[#1a1a2a] text-white px-6 relative border-t border-white/5 snap-start snap-always">
-        <div className="max-w-7xl mx-auto w-full mb-20">
-            {/* Info Section */}
-            <div className="max-w-4xl mx-auto mb-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <div className="flex items-center gap-4 text-gray-300 group">
-                        <div className="p-3 rounded-full bg-[#1a1a1a] text-[#ff8000] group-hover:scale-110 transition-transform">
-                            <Mail size={20} />
-                        </div>
-                        <span className="font-light">melos.s@estudante.ifro.edu.br</span>
-                    </div>
-                    <div className="flex items-center gap-4 text-gray-300 group">
-                        <div className="p-3 rounded-full bg-[#1a1a1a] text-[#ff8000] group-hover:scale-110 transition-transform">
-                            <MapPin size={20} />
-                        </div>
-                        <span className="font-light">Vilhena, RO, Brasil</span>
-                    </div>
-                </div>
+    <footer id="footer" className="section-wrap relative w-full overflow-hidden border-t border-white/10 bg-[#070707] px-5 py-20 text-white md:px-10 lg:px-20">
+      <div className="aurora-orb bottom-[-12rem] right-[-8rem]" aria-hidden="true" />
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <p className="mb-3 text-sm font-black uppercase tracking-[0.35em] text-[#ff8000]">Contato</p>
+            <h2 className="font-display text-3xl font-black leading-tight text-white sm:text-5xl">
+              Obrigado por visitar meu portfólio.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-gray-400">
+              Estou sempre evoluindo e aberto a conversas sobre tecnologia, projetos acadêmicos e oportunidades para aprender construindo.
+            </p>
 
-                {/* Mensagem sobre projetos Python */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="bg-[#1a1a1a] border border-white/10 rounded-xl p-6 md:p-8"
-                >
-                    <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-4">
-                        <span className="text-[#ff8000] font-semibold">Nota:</span> Desculpe pela ausência de projetos em Python no GitHub. 
-                        Na época em que desenvolvi esses projetos, ainda não utilizava o GitHub para versionamento. 
-                        Alguns desses projetos estão disponíveis no{' '}
-                        <a 
-                            href="https://git.academico.vilhena.ifro.edu.br/fabrica-ii-2b/pizzariatop-react/-/tree/34f5800c1cc52592a8834414d2bbe00b653ea696"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-400 hover:text-blue-300 transition-colors font-medium inline-flex items-center gap-1"
-                        >
-                            GitLab
-                            <ExternalLink size={14} className="inline" />
-                        </a>
-                        .
-                    </p>
-                </motion.div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <a href="mailto:melos.s@estudante.ifro.edu.br" className="liquid-card flex items-center gap-4 rounded-2xl p-4 text-gray-300 transition hover:text-white">
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-[#ff8000]/15 text-[#ff8000]"><Mail size={20} /></span>
+                <span className="break-all text-sm font-semibold">melos.s@estudante.ifro.edu.br</span>
+              </a>
+              <div className="liquid-card flex items-center gap-4 rounded-2xl p-4 text-gray-300">
+                <span className="grid h-11 w-11 place-items-center rounded-full bg-[#ff8000]/15 text-[#ff8000]"><MapPin size={20} /></span>
+                <span className="text-sm font-semibold">Vilhena, RO, Brasil</span>
+              </div>
             </div>
+          </div>
 
-            {/* Navigation */}
-            <nav className="flex flex-wrap justify-center gap-6 mb-12">
-                {['Home', 'Sobre', 'Projetos', 'Certificados', 'Contato'].map((item) => (
-                    <a key={item} href="#" className="flex items-center gap-2 text-gray-400 hover:text-[#ff8000] transition-colors group">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#ff8000] opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <span className="text-lg">{item}</span>
-                    </a>
-                ))}
-            </nav>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">© 2026 Steven Tayllon. Todos os direitos reservados.</p>
-            
-            <button 
-                onClick={scrollToTop}
-                className="p-3 rounded-full bg-[#1a1a1a] text-gray-400 hover:bg-[#ff8000] hover:text-black transition-all group shadow-lg shadow-black/50"
+          <div className="liquid-card rounded-[2rem] p-6 md:p-8">
+            <h3 className="text-xl font-black text-white">Nota sobre projetos Python</h3>
+            <p className="mt-4 text-sm leading-7 text-gray-400">
+              Alguns projetos em Python foram desenvolvidos antes do uso constante do GitHub para versionamento. Parte desse histórico está disponível no GitLab acadêmico.
+            </p>
+            <a
+              href="https://git.academico.vilhena.ifro.edu.br/fabrica-ii-2b/pizzariatop-react/-/tree/34f5800c1cc52592a8834414d2bbe00b653ea696"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-blue-300/30 bg-blue-400/10 px-5 py-3 text-sm font-bold text-blue-300 transition hover:bg-blue-400 hover:text-black"
             >
-                <ArrowUp size={20} className="group-hover:-translate-y-1 transition-transform" />
-            </button>
+              Ver GitLab <ExternalLink size={16} />
+            </a>
+          </div>
         </div>
+
+        <div className="mt-14 flex flex-col gap-6 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
+          <nav className="flex flex-wrap gap-3" aria-label="Links do rodapé">
+            {footerLinks.map((item) => (
+              <a key={item.href} href={item.href} className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-gray-300 transition hover:border-[#ff8000]/50 hover:text-[#ff8000]">
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center justify-between gap-5 md:justify-end">
+            <p className="text-sm text-gray-500">© 2026 Steven Tayllon. Todos os direitos reservados.</p>
+            <a href="#hero" className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#ff8000] text-black transition hover:-translate-y-1" aria-label="Voltar ao topo">
+              <ArrowUp size={20} />
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }
