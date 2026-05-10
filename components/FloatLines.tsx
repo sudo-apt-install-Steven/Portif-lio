@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from 'react';
 import {
   Scene,
@@ -299,7 +301,8 @@ export default function FloatingLines({
   const bottomLineDistance = enabledWaves.includes('bottom') ? getLineDistance('bottom') * 0.01 : 0.01;
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const scene = new Scene();
 
@@ -310,7 +313,7 @@ export default function FloatingLines({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
 
     const uniforms = {
       iTime: { value: 0 },
@@ -386,9 +389,8 @@ export default function FloatingLines({
     const clock = new Clock();
 
     const setSize = () => {
-      const el = containerRef.current!;
-      const width = el.clientWidth || 1;
-      const height = el.clientHeight || 1;
+      const width = container.clientWidth || 1;
+      const height = container.clientHeight || 1;
 
       renderer.setSize(width, height, false);
 
@@ -401,8 +403,8 @@ export default function FloatingLines({
 
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(setSize) : null;
 
-    if (ro && containerRef.current) {
-      ro.observe(containerRef.current);
+    if (ro) {
+      ro.observe(container);
     }
 
     const handlePointerMove = (event: PointerEvent) => {
@@ -456,7 +458,7 @@ export default function FloatingLines({
 
     return () => {
       cancelAnimationFrame(raf);
-      if (ro && containerRef.current) {
+      if (ro) {
         ro.disconnect();
       }
 
@@ -486,7 +488,13 @@ export default function FloatingLines({
     bendStrength,
     mouseDamping,
     parallax,
-    parallaxStrength
+    parallaxStrength,
+    topLineCount,
+    middleLineCount,
+    bottomLineCount,
+    topLineDistance,
+    middleLineDistance,
+    bottomLineDistance
   ]);
 
   return (

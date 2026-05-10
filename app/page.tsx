@@ -1,59 +1,82 @@
 "use client";
-import Hero from "@/components/Hero";
+
 import About from "@/components/About";
-import Socials from "@/components/Socials";
-import Projects from "@/components/Projects";
 import Certificates from "@/components/Certificates";
-import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
-import ScrollProgress from "@/components/ScrollProgress";
-import Navigation from "@/components/Navigation";
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import FloatingLines from "@/components/FloatLines";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import Navigation from "@/components/Navigation";
+import Projects from "@/components/Projects";
+import ScrollProgress from "@/components/ScrollProgress";
+import Socials from "@/components/Socials";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading assets
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
+    const timer = window.setTimeout(() => setIsLoading(false), 900);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const updateCursorGlow = (event: PointerEvent) => {
+      document.documentElement.style.setProperty("--cursor-x", `${event.clientX}px`);
+      document.documentElement.style.setProperty("--cursor-y", `${event.clientY}px`);
+    };
+
+    window.addEventListener("pointermove", updateCursorGlow, { passive: true });
+    return () => window.removeEventListener("pointermove", updateCursorGlow);
   }, []);
 
   return (
-    <main className="relative bg-[#0a0a0a] text-white selection:bg-[#ff8000] selection:text-white overflow-x-hidden">
+    <main className="site-shell relative bg-[#070707] text-white selection:bg-[#ff8000] selection:text-black overflow-x-hidden">
+      <div className="noise-overlay" aria-hidden="true" />
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-40 hidden lg:block" aria-hidden="true">
+        <FloatingLines
+          lineCount={[6, 9, 6]}
+          lineDistance={[7, 8, 7]}
+          animationSpeed={0.55}
+          interactive={false}
+          parallax={false}
+          linesGradient={["#ff8000", "#fff2dc", "#ff8000"]}
+          mixBlendMode="screen"
+        />
+      </div>
+
       <CustomCursor />
       <ScrollProgress />
       <Navigation />
-      
+
       <AnimatePresence mode="wait">
         {isLoading && (
+          <motion.div
+            key="loader"
+            className="fixed inset-0 z-[80] bg-[#070707] flex items-center justify-center flex-col gap-5"
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.45 }}
+          >
             <motion.div
-                key="loader"
-                className="fixed inset-0 z-50 bg-[#0a0a0a] flex items-center justify-center flex-col gap-4"
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.5 }}
+              className="relative h-20 w-20 rounded-full border border-[#ff8000]/30"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
             >
-                <motion.div
-                    className="w-16 h-16 border-4 border-[#ff8000] border-t-transparent rounded-full"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                />
-                <motion.span 
-                    animate={{ opacity: [0.5, 1, 0.5] }} 
-                    transition={{ repeat: Infinity, duration: 1.5 }}
-                    className="text-[#ff8000] uppercase tracking-widest text-sm"
-                >
-                    Carregando
-                </motion.span>
+              <span className="absolute -top-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-[#ff8000] shadow-[0_0_28px_#ff8000]" />
             </motion.div>
+            <motion.span
+              animate={{ opacity: [0.45, 1, 0.45] }}
+              transition={{ repeat: Infinity, duration: 1.4 }}
+              className="text-[#ff8000] uppercase tracking-[0.5em] text-xs font-bold"
+            >
+              Inicializando
+            </motion.span>
+          </motion.div>
         )}
       </AnimatePresence>
 
-      <div className={`${isLoading ? 'h-screen overflow-hidden' : ''}`}>
+      <div aria-hidden={isLoading} className="relative z-10">
         <Hero />
         <About />
         <Projects />
