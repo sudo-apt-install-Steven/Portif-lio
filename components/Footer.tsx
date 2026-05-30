@@ -8,7 +8,7 @@ export default function Footer() {
     };
 
   return (
-    <footer id="footer" className="h-screen flex flex-col justify-center w-full bg-gradient-to-b from-[#0a0a0a] to-[#1a1a2a] text-white px-6 relative border-t border-white/5 snap-start snap-always">
+    <footer id="footer" className="min-h-screen py-16 flex flex-col justify-center w-full bg-gradient-to-b from-[#0a0a0a] to-[#1a1a2a] text-white px-6 relative border-t border-white/5 snap-start snap-always">
         <div className="max-w-7xl mx-auto w-full mb-20">
             {/* Info Section */}
             <div className="max-w-4xl mx-auto mb-16">

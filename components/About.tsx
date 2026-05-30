@@ -25,7 +25,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="h-screen w-full flex items-center justify-center bg-[#0f0f0f] py-20 px-6 md:px-20 relative overflow-hidden snap-start snap-always">
+    <section id="about" className="min-h-screen w-full flex items-center justify-center bg-[#0f0f0f] py-20 px-6 md:px-20 relative overflow-hidden snap-start snap-always">
       <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Image Side */}
         <motion.div 
